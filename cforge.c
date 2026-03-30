@@ -129,6 +129,7 @@ CF_TARGET(reader_compile, CF_HIDDEN) {
             );
             CF_FILE_MARK_UTDP(in);
             CF_FILE_MARK_UTDP(out);
+            CF_REMOVE("build/atlxray_reader");
         }
     }
 }
