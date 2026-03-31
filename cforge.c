@@ -4,7 +4,7 @@
 #define LD_TAG "[" CF_CYAN "LD" CF_RESET "] "
 #define KO_TAG "[" CF_MAGENTA "KO" CF_RESET "] "
 
-#define KMOD_NAME "atlxray.ko"
+#define KMOD_NAME "umcxray.ko"
 
 CF_CONFIG(release) {
     CF_SET_ENV(cflags, "-O2 -Iincludes/");
@@ -83,7 +83,7 @@ CF_TARGET(kmod, CF_HELP_STRING("Build the kernel module")) {
     char** objs = CF_MAPA(glob.p, glob.c, CF_MAP_EXT("o"), CF_MAP_DIRS(""));
     CF_WRITE(
         "build/kmod/Makefile",
-        "ccflags-y := -I$(PWD)/includes\nobj-m += %s\natlxray-y := %s",
+        "ccflags-y := -I$(PWD)/includes\nobj-m += %s\numcxray-y := %s",
         CF_MAP(KMOD_NAME, CF_MAP_EXT("o")),
         CF_JOIN(objs, " ", glob.c)
     );
@@ -101,7 +101,7 @@ CF_TARGET(reader,
 
 CF_TARGET(reader_link, CF_DEPENDS(reader_compile), CF_HIDDEN) {
     const char* obj = "build/reader/*.o";
-    char* exe = "build/atlxray_reader";
+    char* exe = "build/umcxray_reader";
 
     if CF_FILE_NOT_UTD(exe) {
         CF_BANNER("%s==== Linking reader ====", LD_TAG);
@@ -129,7 +129,7 @@ CF_TARGET(reader_compile, CF_HIDDEN) {
             );
             CF_FILE_MARK_UTDP(in);
             CF_FILE_MARK_UTDP(out);
-            CF_REMOVE("build/atlxray_reader");
+            CF_REMOVE("build/umcxray_reader");
         }
     }
 }
