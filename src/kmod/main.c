@@ -6,6 +6,7 @@
 #include <linux/debugfs.h>
 
 #include "atlxray.h"
+#include "addr_resolver.h"
 
 static struct atl_regs regs = { 0 };
 static struct debugfs_blob_wrapper regs_wrapper = (struct debugfs_blob_wrapper) {
@@ -19,6 +20,8 @@ static struct dentry *regfile = NULL;
 static int __init init(void)
 {
     pr_info("%s: loading...\n", KBUILD_MODNAME);
+
+    void *addr = kprobe_symbol_lookup("do_sys_open");
 
     root = debugfs_create_dir("atlxray", NULL);
     if (IS_ERR(root))
