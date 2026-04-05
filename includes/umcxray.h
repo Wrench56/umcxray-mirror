@@ -2,6 +2,7 @@
 #define UMCXRAY_H
 
 #define UMC_MAGIC 0xAFA0
+#define MODNAME "UMCXray"
 
 struct umc_regs {
     unsigned short magic;
