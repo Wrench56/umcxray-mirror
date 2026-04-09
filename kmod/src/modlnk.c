@@ -4,18 +4,19 @@
 #include <sys/sunddi.h>
 
 #include "umcxray.h"
+#include "uxioctl.h"
 
 #include "kmod/uxdevvfs.h"
 
 static struct cb_ops cb_ops = {
+    umcxray_open,
+    umcxray_close,
     nodev,
     nodev,
     nodev,
     nodev,
     nodev,
-    nodev,
-    nodev,
-    nodev,
+    umcxray_ioctl,
     nodev,
     nodev,
     nodev,

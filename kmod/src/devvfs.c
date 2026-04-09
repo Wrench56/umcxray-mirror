@@ -4,6 +4,22 @@
 #include "kmod/uxlog.h"
 
 int
+umcxray_open(dev_t *devp, int flag, int otyp, cred_t *cred_p)
+{
+    if (otyp != OTYP_CHR)
+    {
+        return (EINVAL);
+    }
+
+    return 0;
+}
+
+int umcxray_close(dev_t dev, int flag, int otyp, cred_t *cred_p)
+{
+    return 0;
+}
+
+int
 umcxray_attach(dev_info_t *dip, ddi_attach_cmd_t cmd)
 {
     switch (cmd) {
